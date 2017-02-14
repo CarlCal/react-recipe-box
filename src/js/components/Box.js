@@ -1,8 +1,6 @@
 
+import { Accordion, Panel} from 'react-bootstrap';
 import React from "react"
-
-import Recipe from "./Recipe"
-
 
 export default class Box extends React.Component {
 	
@@ -17,12 +15,16 @@ export default class Box extends React.Component {
 
 	render() {
 		return (
-			<div class="panel-group" id="accordion">
-			{
-				this.state.recipes.map((recipe, i) => {
-					return <Recipe key={i} oneRecipe={recipe}/>
-				})	
-			}
+			<div>
+			  <Accordion>
+			    {
+			    	this.state.recipes.map((recipe, i) => {
+			    		return <Panel header={recipe.title} key={i} eventKey={i}>
+			    						{recipe.content}
+			    					 </Panel>
+			    	})
+			    }
+			  </Accordion>
 			</div>
 		)
 	}

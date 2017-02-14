@@ -1,0 +1,28 @@
+
+.panel-title {cursor: pointer; user-select: none;}
+
+#box-container {
+	border: 5px solid black;
+	margin-top: 100px; margin-bottom: 100px;
+	height: 500px;
+	padding: 0px;
+	width: 500px;
+}
+
+#footer-bar {border: 5px solid black;}
+
+
+/*.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 400px;
+    height: 250px;
+}
+
+.flex-item {
+    background-color: cornflowerblue;
+    width: 10px;
+    height: 10px;
+    margin: 10px;
+}*/
+

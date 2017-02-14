@@ -9,20 +9,8 @@
 	width: 500px;
 }
 
+#accordion {padding: 10px;}
+
 #footer-bar {border: 5px solid black;}
 
-
-/*.flex-container {
-    display: -webkit-flex;
-    display: flex;
-    width: 400px;
-    height: 250px;
-}
-
-.flex-item {
-    background-color: cornflowerblue;
-    width: 10px;
-    height: 10px;
-    margin: 10px;
-}*/
 

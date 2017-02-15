@@ -1,9 +1,4 @@
 
-// check webpack comiling times,
-// look for optimization
-
-// CSS via Loaders
-
 import React from "react"
 import ReactDOM from "react-dom"
 

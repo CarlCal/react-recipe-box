@@ -1,17 +1,40 @@
 
 import { Accordion, Panel, 
-				 ListGroup, ListGroupItem} from 'react-bootstrap';
+				 ListGroup, ListGroupItem, Modal, 
+				 FormControl, FormGroup, ControlLabel} from 'react-bootstrap';
+
 import React from "react"
+
+// Figure out cache and passport, sessionsjs
 
 export default class Box extends React.Component {
 	
 	constructor() {
     super();
-    this.state = {recipes: 
+    this.state = {
+    	recipes: 
     	[
     		{title: "Becon & Egg Sandwich", ingredients: ["Bread", "Egg", "Bacon"]},
-    		{title: "A Cheicken Thing", ingredients: ["Chicken", "Curry", "Onions", "Cheese"]}
-    	]}
+    		{title: "A Chicken Thing", ingredients: ["Chicken", "Curry", "Onions", "Cheese"]}
+    	],
+    	showModal: false
+    }
+  }
+
+  handleSubmit(event) {
+
+  }
+
+  handleChange(event) {
+
+  }
+
+  close() {
+    this.setState({ showModal: false });
+  }
+
+  open() {
+    this.setState({ showModal: true });
   }
 
 	render() {
@@ -39,7 +62,43 @@ export default class Box extends React.Component {
 			    	})
 			    }
 			  </Accordion>
-			  <button class="btn btn-lg btn-info">Add Recipe</button>
+
+			  <div>
+			  <button class="btn btn-lg btn-info" onClick={this.open.bind(this)}>Add Recipe</button>
+			  <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+	          <Modal.Header closeButton>
+	            <center><Modal.Title>Add a new recipe</Modal.Title></center>
+	          </Modal.Header>
+
+	          <form>
+		          <Modal.Body>
+					        <FormGroup>
+					          <ControlLabel>Recipe:</ControlLabel>
+					          <FormControl
+					          	onChange={this.handleChange.bind(this)}
+					          	name= "title"
+					            type="text"
+					            placeholder="Recipe Name"
+					          />
+					        </FormGroup>
+					        <FormGroup>
+					          <ControlLabel>Ingredients:</ControlLabel>
+					          <FormControl
+					          	onChange={this.handleChange.bind(this)}
+					          	name= "ingredients"
+					            componentClass="textarea"
+					            placeholder="Enter ingredients,seperated,with,commas"
+					          />
+					        </FormGroup>
+		          </Modal.Body>
+
+		          <Modal.Footer>
+		          	<button type="reset" onClick={this.handleSubmit.bind(this)} class="btn btn-sm btn-primary" >Add Recipe</button>
+		          </Modal.Footer>
+	          </form>
+
+        </Modal>
+			  </div>
 			</div>
 		)
 	}

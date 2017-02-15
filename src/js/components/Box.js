@@ -1,5 +1,6 @@
 
-import { Accordion, Panel} from 'react-bootstrap';
+import { Accordion, Panel, 
+				 ListGroup, ListGroupItem} from 'react-bootstrap';
 import React from "react"
 
 export default class Box extends React.Component {
@@ -8,8 +9,8 @@ export default class Box extends React.Component {
     super();
     this.state = {recipes: 
     	[
-    		{title: "Becon & Egg Sandwich", content: "Bread, Egg, Bacon"},
-    		{title: "A Cheicken Thing", content: "Chicken, Curry, Onions, Cheese"}
+    		{title: "Becon & Egg Sandwich", ingredients: ["Bread", "Egg", "Bacon"]},
+    		{title: "A Cheicken Thing", ingredients: ["Chicken", "Curry", "Onions", "Cheese"]}
     	]}
   }
 
@@ -19,27 +20,27 @@ export default class Box extends React.Component {
 			  <Accordion>
 			    {
 			    	this.state.recipes.map((recipe, i) => {
-			    		return <Panel header={recipe.title} key={i} eventKey={i}>
-			    						{recipe.content}
+			    		return <Panel id="panel" bsStyle="success" header={recipe.title} key={i} eventKey={i}>
+			    						<div id="title-container" >
+			    							<p>{"Ingredients"}</p>
+			    						</div>
+			    						<div id="content-container">
+			    							<ListGroup>			    							
+				    							{	
+				    								recipe.ingredients.map((ingredient, i) => {
+				    									return <ListGroupItem key={i}>{ingredient}</ListGroupItem>				 
+				    								})
+				    							}	
+			    							</ListGroup>	
+			    						</div>
+			    						<button class="btn btn-md btn-danger">Delete</button>
+			    						<button class="btn btn-md btn-primary">Edit</button>
 			    					 </Panel>
 			    	})
 			    }
 			  </Accordion>
+			  <button class="btn btn-lg btn-info">Add Recipe</button>
 			</div>
 		)
 	}
 }
-
-
-		 //    	{
-		 //    		this.state.recipes.map((recipe, i) => {
-			//     		return <Heading key={i} recipeHeading={recipe} />
-			//     	})
-		 //    	}
-			//    </div>
-			//     {
-		 //    		this.state.recipes.map((recipe, i) => {
-			//     		return <Content key={i} recipeContent={recipe} />
-			//     	})
-		 //    	}
-			// </div>

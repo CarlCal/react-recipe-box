@@ -1,62 +1,68 @@
 
-import { Accordion, Panel, 
-				 ListGroup, ListGroupItem} from 'react-bootstrap';
-
 import React from "react"
 
-// Figure out cache and passport, sessionsjs
+import { Modal, FormControl, FormGroup, ControlLabel } from 'react-bootstrap';
 
-import popModule from "./popModal"
+import Recipes from "./Recipes"
 
 export default class Box extends React.Component {
 	
 	constructor() {
-    super()
-    this.state = {parsedLocalStorage: [], showAddModal: false, showEditModal: false}
-  }
-
-  componentDidMount() {
-  	window.localStorage.setItem("carlcRecipes", JSON.stringify([{title: "Becon & Egg Sandwich", ingredients: ["Bread", "Egg", "Bacon"]},
+		window.localStorage.setItem("carlcRecipes", JSON.stringify([{title: "Becon & Egg Sandwich", ingredients: ["Bread", "Egg", "Bacon"]},
   																														  {title: "A Chicken Thing", ingredients: ["Chicken", "Curry", "Onions", "Cheese"]}]))
     
   	var storage = JSON.parse(localStorage.getItem("carlcRecipes"));
-    this.setState({parsedLocalStorage: storage})	
+
+    super()
+    this.state = {parsedLocalStorage: storage, showAddModal: false}
+  }
+
+  open() {
+  	this.setState({ showAddModal: true })
+  }
+
+  close() {
+  	this.setState({ showAddModal: false })
   }
 
 	render() {
-		
 		return (
 			<div>
-			  <Accordion>
-			    {
-			    	this.state.parsedLocalStorage.map((recipe, i) => {
-			    		return <Panel id="panel" bsStyle="success" header={recipe.title} key={i} eventKey={i}>
-			    						<div id="title-container" >
-			    							<p>{"Ingredients"}</p>
-			    						</div>
-			    						<div id="content-container">
-			    							<ListGroup>			    							
-				    							{	
-				    								recipe.ingredients.map((ingredient, i) => {
-				    									return <ListGroupItem key={i}>{ingredient}</ListGroupItem>				 
-				    								})
-				    							}	
-			    							</ListGroup>	
-			    						</div>
-			    						<button class="btn btn-md btn-danger">Delete</button>
-			    						<button class="btn btn-md btn-primary">Edit</button>
-			    					 </Panel>
-			    	})
-			    }
-			  </Accordion>
-			  <div>
-			  	<button class="btn btn-lg btn-info">Add Recipe</button>
-			  </div>
+				<Recipes recipes={this.state.parsedLocalStorage} />
+		  	<button class="btn btn-lg btn-info" onClick={this.open.bind(this)}>Add Recipe</button>
+			  <Modal show={this.state.showAddModal} onHide={this.close.bind(this)}>
+			  	<Modal.Header closeButton>
+			    	<center><Modal.Title>Add a new recipe</Modal.Title></center>
+			    </Modal.Header>
+
+		      <form>
+			    	<Modal.Body>
+						<FormGroup>
+					  	<ControlLabel>Recipe:</ControlLabel>
+							<FormControl
+				       	name= "title"
+				        type="text"
+				        placeholder="Recipe Name"
+				      />
+				    	</FormGroup>
+				      <FormGroup>
+				      	<ControlLabel>Ingredients:</ControlLabel>
+				        <FormControl
+				        	name= "ingredients"
+				          componentClass="textarea"
+				          placeholder="Enter ingredients,seperated,with,commas"
+				        />
+				      </FormGroup>
+			     	</Modal.Body>
+
+		        <Modal.Footer>
+		          <button type="reset" class="btn btn-sm btn-primary" >Add Recipe</button>
+		        </Modal.Footer>
+	        </form>
+	      </Modal>
 			</div>
 		)
 	}
 }
 
-			  	// <popModal 
-			  	// 	modalAction="Add Recipe" 
-			  	// 	getModal={this.state.showAddModal}/>
+			  	

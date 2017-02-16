@@ -8,13 +8,57 @@ import Recipes from "./Recipes"
 export default class Box extends React.Component {
 	
 	constructor() {
-		window.localStorage.setItem("carlcRecipes", JSON.stringify([{title: "Becon & Egg Sandwich", ingredients: ["Bread", "Egg", "Bacon"]},
-  																														  {title: "A Chicken Thing", ingredients: ["Chicken", "Curry", "Onions", "Cheese"]}]))
-    
-  	var storage = JSON.parse(localStorage.getItem("carlcRecipes"));
+		var storage = JSON.parse(localStorage.getItem("carlcRecipes"))
 
     super()
-    this.state = {parsedLocalStorage: storage, showAddModal: false}
+    this.state = {parsedLocalStorage: storage, 
+    							showAddModal: false, 
+    							inputName: "",
+    							inputIngredients: ""}
+  }
+
+  handleInput(event) {
+  	var name = event.target.name
+  	var value = event.target.value
+
+  	if (name === "title") {
+  		this.setState({ inputName: value })
+  	} else if (name === "ingredients") {
+  		this.setState({ inputIngredients: value })
+  	}
+  }
+
+  handleNewRecipe(event) {
+  	var recipe = {title: this.state.inputName, ingredients: this.state.inputIngredients.split(',')}
+
+  	var storage = JSON.parse(localStorage.getItem("carlcRecipes"))
+  	storage.push(recipe)
+  	window.localStorage.setItem("carlcRecipes", JSON.stringify(storage))
+
+  	this.setState({ parsedLocalStorage: storage, 
+  									showAddModal: false,
+  									inputName: "",
+  									inputIngredients: "" })
+  }
+
+  editInput(target, newRecipe) {
+  	
+  	var storage = JSON.parse(localStorage.getItem("carlcRecipes"))
+  	console.log(target)
+
+  	storage[target].title = newRecipe.title
+  	storage[target].ingredients = newRecipe.ingredients
+
+  	window.localStorage.setItem("carlcRecipes", JSON.stringify(storage))
+
+  	this.setState({ parsedLocalStorage: storage })
+  }
+
+  deleteRecipe(target) {
+  	var storage = JSON.parse(localStorage.getItem("carlcRecipes"))
+  	storage.splice(target, 1)
+  	window.localStorage.setItem("carlcRecipes", JSON.stringify(storage))
+  	this.setState({ parsedLocalStorage: storage })
   }
 
   open() {
@@ -28,7 +72,7 @@ export default class Box extends React.Component {
 	render() {
 		return (
 			<div>
-				<Recipes recipes={this.state.parsedLocalStorage} />
+				<Recipes recipes={this.state.parsedLocalStorage} removeRecipe={this.deleteRecipe.bind(this)} recipeEdit={this.editInput.bind(this)} />
 		  	<button class="btn btn-lg btn-info" onClick={this.open.bind(this)}>Add Recipe</button>
 			  <Modal show={this.state.showAddModal} onHide={this.close.bind(this)}>
 			  	<Modal.Header closeButton>
@@ -40,6 +84,7 @@ export default class Box extends React.Component {
 						<FormGroup>
 					  	<ControlLabel>Recipe:</ControlLabel>
 							<FormControl
+								onChange={this.handleInput.bind(this)}
 				       	name= "title"
 				        type="text"
 				        placeholder="Recipe Name"
@@ -48,6 +93,7 @@ export default class Box extends React.Component {
 				      <FormGroup>
 				      	<ControlLabel>Ingredients:</ControlLabel>
 				        <FormControl
+				        	onChange={this.handleInput.bind(this)}
 				        	name= "ingredients"
 				          componentClass="textarea"
 				          placeholder="Enter ingredients,seperated,with,commas"
@@ -56,7 +102,7 @@ export default class Box extends React.Component {
 			     	</Modal.Body>
 
 		        <Modal.Footer>
-		          <button type="reset" class="btn btn-sm btn-primary" >Add Recipe</button>
+		          <button type="reset" class="btn btn-sm btn-primary" onClick={this.handleNewRecipe.bind(this)} >Add Recipe</button>
 		        </Modal.Footer>
 	        </form>
 	      </Modal>

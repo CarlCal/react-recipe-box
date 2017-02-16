@@ -2,7 +2,7 @@
 .panel-title {cursor: pointer; user-select: none;}
 .btn-primary {margin-left: 10px;}
 
-#panel {padding: 0px;}
+.panel {padding: 0px;}
 
 #title-container {
 	border: 1px solid lightgrey;

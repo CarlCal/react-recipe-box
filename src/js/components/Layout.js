@@ -2,15 +2,17 @@
 import React from "react"
 
 import Body from "./Body"
-import Footer from "./Footer"
 
 export default class Layout extends React.Component {
 	render() {
 		return (
-			<div>
-				<Body />
-				<Footer />
+			<div id="canvas">
+				<div id="header" class="bar"></div>
+				<div id="body"></div>
+				<div id="footer" class="bar"></div>
 			</div>
 		)
 	}
 }
+
+//<Body />

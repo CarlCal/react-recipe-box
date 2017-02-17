@@ -2,7 +2,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import "../css/main.css"
+import "../css/main.sass"
 
 import Layout from "./components/Layout"
 

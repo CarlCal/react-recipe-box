@@ -8,11 +8,13 @@ export default class Layout extends React.Component {
 		return (
 			<div id="canvas">
 				<div id="header" class="bar"></div>
-				<div id="body"></div>
+					<Body />
 				<div id="footer" class="bar"></div>
 			</div>
 		)
 	}
 }
 
-//<Body />
+					
+
+

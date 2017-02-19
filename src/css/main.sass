@@ -23,6 +23,7 @@ html, body
 #footer
 	@extend .bar
 	bottom: 0
+	outline: 3px solid $myYellow
 
 #body 
 	background-color: #fffff4
@@ -31,7 +32,7 @@ html, body
 	width: 100%
 
 #card-holder
-	width: 325px
+	width: 385px
 	height: 100%
 	left: 100px
 	top: 0
@@ -44,6 +45,9 @@ html, body
 	background-color: $myYellow
 
 .flex-container
+	margin-top: 5px
+	margin-bottom: 5px
+	width: 360px
 	-webkit-flex-direction: column
 	flex-direction: column
 	top: 0
@@ -52,64 +56,55 @@ html, body
 	left: 15px
 
 .flex-item
-	border: 5px solid black
+	border: 5px solid transparent
 	border-left-width: 0px
 	height: 40px
 	margin-top: -5px
-	min-width: 100px
-	max-width: 300px
+	min-width: 10px
+	max-width: 370px
 	padding: 0
 
-.label
+.cell
+	font-weight: bold
+	background-color: $myYellow
+	border-color: $myYellow
+	padding-top: 4px
+	position: absolute
+	height: 30px
 	border-top-right-radius: 10px
 	border-bottom-right-radius: 10px
-	padding: 0
-	position: absolute
-	cursor: pointer
-	width: calc(100% - 5px)
-	height: 30px
-	background-color: $myYellow
-	color: white
-	font-weight: bold
-	font-size: 15px
-	padding-left: 7px
-	padding-right: 10px
-	padding-top: 6.4px
-	text-align: left
+	border-top-left-radius: 0px
+	border-bottom-left-radius: 0px
 	z-index: 2
+	&:focus
+		animation: cell-selected 300ms ease-in-out forwards
+		outline-width: 0px
+		background-color: $myYellow
+		border-color: $myYellow
+		box-shadow: 0px 0px 0px white
+	&:hover, &:active:focus
+		outline-width: 0px
+		background-color: $myYellow
+		border-color: $myYellow
+		box-shadow: 0px 0px 0px white
+
+	@keyframes cell-selected
+		0%
+			transform: translateX(0px)
+		100%
+			transform: translateX(20px)
+
+	
+
+//the radio is checked it stays to 20px out
 
 .conect-pin
-	background-color: blue
+	background-color: $myYellow
 	position: relative
 	width: 20px
 	height: 5px
 	top: 12.5px
 
-// .label
-// 	cursor: pointer
-// 	border-top-right-radius: 10px
-// 	border-bottom-right-radius: 10px
-// 	margin-top: 5px
-// 	position:absolute
-// 	top: 0
-// 	min-width: 100px
-// 	max-width: 300px
-// 	height: 30px
-// 	background-color: $myYellow
-// 	color: white
-// 	font-weight: bold
-// 	padding-left: 7px
-// 	padding-right: 10px
-// 	padding-top: 4px
-// 	&:hover
-//     transform: translateX(20px)
-
-// #contect-pin
-// 	width: 20px
-// 	height: 5px
-// 	background-color: blue
-// 	position: absolute
-// 	top: 0
 
 
 

@@ -30,7 +30,18 @@ render() {
 				</div>
 				<div id="card-viewer" >
 					<div id="display" class="container">
-						
+						<img class="img-responsive" src="http://68.media.tumblr.com/71a040174d38fc95bcaccdda59d06cf8/tumblr_mznzmrod2c1qfj6wko1_500.jpg" alt="" />
+						<div id="recipe" >
+							<div id="ingredients">
+								<ul class="list-group row">
+						     <li class="list-group-item col-xs-6">Row1</li>
+						     <li class="list-group-item col-xs-6">Row2</li>
+						     <li class="list-group-item col-xs-6">Row3</li>
+						     <li class="list-group-item col-xs-6">Row4</li>
+						     <li class="list-group-item col-xs-6">Row5</li>
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -38,7 +49,7 @@ render() {
 	}
 }
 
-//<img class="recipe-img" src="http://68.media.tumblr.com/71a040174d38fc95bcaccdda59d06cf8/tumblr_mznzmrod2c1qfj6wko1_500.jpg" alt="" />
+//
 
 //max 44 caracters in recipe name
 //23 recipes
